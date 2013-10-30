@@ -1,0 +1,57 @@
+body::selection{
+	background: #dd4814;
+	color: white;
+}
+.hideShow{
+    display:none;
+}
+.error{
+    color:red;
+}
+.red{
+	color:red;
+}
+.width-1 {
+	width:1px;
+}
+.button-group{
+	margin:0;
+	white-space: nowrap;
+}
+.table.table-striped tbody .hoverable:hover td, .btn.btn-default:hover, .btn.btn-default:active{
+	background-color: #dd4814;
+	color: white;
+	cursor: pointer;
+}
+.table-anchor, .feedback a, .feedback a:hover{
+	color: #dd4814;
+}
+tr:hover .table-anchor{
+	color: white;
+}
+.number-cell {
+	text-align: right;
+}
+td, tr{
+	z-index: 5;
+}
+.table.table-striped.table-bordered tbody tr .normal{
+	background-color: white;
+	color: #dd4814;
+}
+.display-inline br{
+	display: none;
+}
+.feedback{
+	color:darkgray;
+}
+.loader{
+	display:block;
+	width:auto;
+	height:auto;
+	margin-left:auto;
+	margin-right:auto;
+}
+.delete-form{
+	z-index:10;
+}

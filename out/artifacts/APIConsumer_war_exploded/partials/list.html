@@ -1,0 +1,36 @@
+<h2>Games</h2>
+<table class="table table-striped table-bordered col-lg-12">
+	<thead>
+	<tr>
+		<th>
+			Name:
+		</th>
+		<th class="width-1">
+			Year:
+		</th>
+		<th class="number-cell width-1">
+			Price:
+		</th>
+		<th>
+		</th>
+	</tr>
+	</thead>
+	<tbody>
+		<tr class="row-loader" ng-show="loading"><td colspan="4"><img class="loader" src="resources/img/ajax-loader.gif" /></td></tr>
+		<tr class="hoverable" ng-repeat="game in data.games" ng-show="loaded" clickable>
+			<td><a class="table-anchor" href="#/game/{{game.name}}">{{game.name}}</a></td>
+			<td class="width-1">{{game.year}}</td>
+			<td class="number-cell">{{game.price}}</td>
+			<td class="width-1">
+				<form id="delete-game-{{game.name}}" class="button-group delete-form form-inline btn-group" ng-submit="deleteGame(game)">
+					<button class="btn btn-default btn-sm" type="submit">
+						<span class="glyphicon glyphicon-remove"/>
+					</button>
+				</form>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<a href="#/game/add">
+	<button class="btn btn-default">Add Game</button>
+</a>
