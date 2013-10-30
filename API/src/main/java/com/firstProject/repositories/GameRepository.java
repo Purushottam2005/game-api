@@ -23,8 +23,8 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 
 	Game findByNameIgnoreCase(@Param("name") String name);
 
-	@Query("DELETE from Game g where upper(g.name) like upper(:name)")
+	/*@Query("DELETE from Game g where upper(g.name) like upper(:name)")
 	@Modifying
 	@Transactional
-	void deleteByName(@Param("name") String name);
+	void deleteByName(@Param("name") String name);*/
 }

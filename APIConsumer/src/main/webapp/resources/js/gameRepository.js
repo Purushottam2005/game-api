@@ -22,12 +22,18 @@ application.config(function($routeProvider){
 
 application.factory("Games", function($resource, apiUrl){
 	return $resource(
-		apiUrl + "game/:name",
-		{name: "@name"},
+		apiUrl + "game/:id",
+		{id: "@id"},
 		{
 			create: {method: "POST"},
 			update: {method: "PUT"}
 		}
+	);
+});
+application.factory("GameByName", function($resource, apiUrl){
+	return $resource(
+		apiUrl + "game/search/findByNameIgnoreCase?name=:name",
+		{name: "@name"}
 	);
 });
 
@@ -91,28 +97,34 @@ function AddCtrl($scope, Games){
 		$scope.success = false;
 	};
 }
-function EditCtrl($scope, Games, $routeParams){
+function EditCtrl($scope, GameByName, $routeParams, Games){
 	$scope.game = {};
 
 	$scope.title = "Edit Game: ";
 	$scope.buttonText = "Edit";
 
-	Games.get({name: $routeParams.name}, function(response){
-		$scope.game = response;
-		$scope.title += $scope.game.name;
-	},
-	function(error){
-		console.log(error);
-	});
+	GameByName.get(
+		{name: $routeParams.name},
+		function(response){
+			var game = response.content[0];
+			$scope.game = game;
+			$scope.title += $scope.game.name;
+		},
+		function(error){
+			console.log(error);
+		}
+	);
 
 	$scope.submit = function (){
 		//hvorfor sette links til undefined? Dunno, men det funker
 		$scope.game.links = undefined;
-		Games.update($scope.game, function(success){
-			console.log(success);
-			$scope.error = false;
-			$scope.success = true;
-		});
+		Games.update(
+			$scope.game,
+			function(success){
+				$scope.error = false;
+				$scope.success = true;
+			}
+		);
 	}
 	$scope.hideFeedback = function(){
 		$scope.error = false;
